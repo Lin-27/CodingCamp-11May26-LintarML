@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Expense & Budget Visualizer</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body class="light-mode">
+  <div class="app-shell">
+    <header class="app-header">
+      <div>
+        <p class="eyebrow">Expense & Budget Visualizer</p>
+        <h1>Total Balance</h1>
+        <div class="balance" id="balanceDisplay">$0.00</div>
+      </div>
+      <button id="themeToggle" class="theme-toggle" aria-label="Toggle dark mode">🌙</button>
+    </header>
+
+    <section class="card form-card">
+      <div class="section-header">
+        <h2 id="formHeading">Add Transaction</h2>
+        <span class="status" id="formStatus"></span>
+      </div>
+      <form id="transactionForm" class="transaction-form" novalidate>
+        <label>
+          Item Name
+          <input id="itemName" type="text" placeholder="Coffee, Bus pass, Movie" autocomplete="off" />
+        </label>
+
+        <label>
+          Amount
+          <input id="amount" type="number" placeholder="0.00" min="0.01" step="0.01" />
+        </label>
+
+        <label>
+          Category
+          <select id="categorySelect">
+            <option value="" selected disabled>Select category</option>
+            <option value="Food">Food</option>
+            <option value="Transport">Transport</option>
+            <option value="Fun">Fun</option>
+            <option value="custom">Add custom category...</option>
+          </select>
+        </label>
+
+        <label class="hidden" id="customCategoryRow">
+          Custom Category
+          <input id="customCategory" type="text" placeholder="e.g. Coffee, Health, Rent" autocomplete="off" />
+        </label>
+
+        <div class="button-row">
+          <button type="submit" class="primary-button">Add Transaction</button>
+          <button type="button" id="cancelEditButton" class="secondary-button hidden">Cancel</button>
+        </div>
+      </form>
+    </section>
+
+    <section class="card chart-card">
+      <div class="section-header">
+        <h2>Spending by Category</h2>
+        <div class="chart-meta">
+          <label class="sort-label">
+            Sort by
+            <select id="sortSelect">
+              <option value="date">Date</option>
+              <option value="amount">Amount</option>
+              <option value="category">Category</option>
+            </select>
+          </label>
+        </div>
+      </div>
+      <canvas id="spendingChart" aria-label="Spending distribution chart"></canvas>
+    </section>
+
+    <section class="card list-card">
+      <div class="section-header">
+        <h2>Transactions</h2>
+        <span id="listCount">0 items</span>
+      </div>
+      <div class="transaction-list" id="transactionList"></div>
+    </section>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="js/script.js"></script>
+</body>
+</html>
